@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+﻿<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -20,6 +20,20 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
+
+## Isntall Project
+
+Для запуска проекта:
+1) нужно создать в директории проекта файл ".env". В него скопировать код из ".env-example", и изменить пункты DT_DATABASE на созданую базу данных, 
+ввести логин и пароль (по необходимости) в полях "DB_USERNAME=", "DB_PASSWORD=".
+2) нужно сделать установку vendor компонентов, для это необходимо выполнить команду "composer install".
+3) Нужно сгенерировать код командой "php artisan key:generate".
+4) Нужно сгенерировать секретный код JWT компонента для аутентификации, для это необходимо выполнить команду "php artisan jwt:secret".
+Далее можно раюотать с проектом.
+У точнение:
+Для изменение статей(постов), что бы работало коректно в POSTMAN, Insomnia и т.д., использовать структуру "FROM URL Encoded",
+а в разделе "Header" в полях проверить что бы было написано "Content-Type" и "application/x-www-form-urlencoded",  если этого нет
+прописать.
 
 ## Learning Laravel
 
@@ -77,3 +91,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
