@@ -18,28 +18,24 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 /** Auth */
-Route::post('registration', 'AuthController@registration');
-Route::post('login', 'AuthController@login');
+Route::post('register',     'AuthController@register');
+Route::post('login',        'AuthController@login');
 
-/** Post */
-Route::get('post','PostController@Post');/** Просмотр всех статей(постов) */
-Route::get('post/{id}','PostController@PostById');/** Просто статии(поста) по записи(ID) */
+/** Posts */
+Route::get('posts',      'PostController@index');
+Route::get('posts/{id}', 'PostController@show');
 
-
-Route::group([
-    'middleware' => 'jwt.verify'
-], function () {
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+Route::group(['middleware' => 'jwt.verify'], function () {
+    /** Auth */
+    Route::post('logout',   'AuthController@logout');
+    Route::get('details',  'AuthController@details');
     /** Posts */
-    Route::post('post/create','PostController@PostCreate');
-    Route::put('post/edit/{id}','PostController@PostEdit');
-    Route::delete('post/{id}','PostController@PostDelete');
+    Route::post('post/create',         'PostController@create');
+    Route::put('post/update/{id}',      'PostController@update');
+    Route::delete('post/{id}',           'PostController@delete');
     /** Comments */
-    Route::post('post/{id}/comment','CommentController@CommentCreate');
+    Route::post('post/{id}/comment',   'CommentController@create');
 });
-
 
 
 

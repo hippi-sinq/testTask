@@ -2,34 +2,21 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\AuthController;
-use App\User;
-use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Auth;
-use Tymon\JWTAuth\Http\Middleware\Authenticate;
-
-
+use App\User;
+use App\Models\Comment;
 
 class Post extends Model
 {
-//    public function __construct()
-//    {
-//        $this->middleware('Auth');
-//    }
-
-    protected $table = 'posts';
-
     protected $guarded = [];
 
     protected $with = [
-        'user',
-        'comments'
+        'comments',
     ];
 
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->BelongsTo(User::class);
     }
@@ -38,5 +25,4 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
 }

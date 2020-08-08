@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Models\Comment;
-use App\Models\Post;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Comment;
+use App\Models\Post;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -23,6 +23,11 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password',
     ];
 
+    protected $with = [
+        'comments',
+        'posts'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -32,10 +37,6 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-    protected $with = [
-        'comments',
-        'posts'
-    ];
     /**
      * The attributes that should be cast to native types.
      *
@@ -45,15 +46,13 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class);
-    }
+    // Rest omitted for brevity
 
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
-    }
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -69,5 +68,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-}
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+}
