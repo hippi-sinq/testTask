@@ -34,7 +34,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
     /** Posts */
     Route::post('post/create','PostController@PostCreate');
-    Route::put('post/{id}','PostController@PostEdit');
+    Route::put('post/edit/{id}','PostController@PostEdit');
     Route::delete('post/{id}','PostController@PostDelete');
     /** Comments */
     Route::post('post/{id}/comment','CommentController@CommentCreate');

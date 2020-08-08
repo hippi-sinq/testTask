@@ -16,7 +16,8 @@ class PostController extends Controller
        return response()->json(Post::get(), 200);
    }
 
-    public function PostEdit(Request $request, Post $post, $id){
+    public function PostEdit(Request $request, int $id)
+    {
        $post = Post::findOrFail($id);
        $post->update($request->all());
        return response()->json($post, 200);
