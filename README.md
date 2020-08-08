@@ -30,6 +30,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 3) Нужно сгенерировать код командой "php artisan key:generate".
 4) Нужно сгенерировать секретный код JWT компонента для аутентификации, для это необходимо выполнить команду "php artisan jwt:secret".
 Далее можно раюотать с проектом.
+
 У точнение:
 Для изменение статей(постов), что бы работало коректно в POSTMAN, Insomnia и т.д., использовать структуру "FROM URL Encoded",
 а в разделе "Header" в полях проверить что бы было написано "Content-Type" и "application/x-www-form-urlencoded",  если этого нет
